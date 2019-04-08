@@ -1,0 +1,26 @@
+<form class="example-form">
+    <mat-form-field class="example-full-width">
+    <input matInput placeholder="Buscar" aria-label="State" [matAutocomplete]="auto" [formControl]="searchField"> 
+  
+      <mat-icon *ngIf="loading" matSuffix>refresh</mat-icon>
+  
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option *ngFor="let track of results | async" [value]="track.track" (click)='seleccionarPersona(track)'>
+          <img class="example-option-img" aria-hidden [src]="track.thumbnail" height="25">
+          <span>{{track.track}}</span>
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>  
+  
+  </form>
+  
+  <div class="text-center">
+    <p class="lead" *ngIf="loading">Loading...</p>
+  </div>
+  
+  
+  <div *ngFor='let t of seleccionados'>
+    <span>{{ t.track}}</span>
+  </div>
+  
+  <div>Cargando: {{loading}}</div>
